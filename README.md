@@ -9,6 +9,8 @@
 
 # ⚠️ Warnings
 
+* some text are still in my language: Italian
+
 * **Note**: This software is currently an **incomplete prototype**!
 
 * **VirusTotal report**: [99d91bed2ac11da21fa708d09a58bac81a8527ca23fc5121f06ae02e81fa8b62](https://www.virustotal.com/gui/file/99d91bed2ac11da21fa708d09a58bac81a8527ca23fc5121f06ae02e81fa8b62)
@@ -45,4 +47,5 @@
 
 # TODO / MAYBE
 
+* **Full Localizations:** in Italian and English, and maybe some others :|
 * **Custom Commands:** execute external tools (e.g., Terminal, VS Code) directly from the context menu via `settings.cfg` and `context.cfg`

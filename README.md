@@ -1,4 +1,3 @@
-# 📸 Screenshot
 ![4TABs Preview](https://raw.githubusercontent.com/70V07/4TABs/refs/heads/main/screenshoot.jpg)
 
 4TABs is a 4 tabs file manager for Windows 10/11+ designed to enhance file manipulation efficiency through a centralized four-unit interface

@@ -26,7 +26,7 @@ detection results are **false positives** due to the nature of low-level Windows
 * **Immersive Dark Mode:** full integration with Windows **dark theme (only)**, including custom-drawn scrollbars and headers
 * **Sync-Resizing:** dynamic synchronization of sidebar and column widths across all panes
 * **Shell Integration:** high-quality system icons and native *context menus (WIP)*
-* **Persistent Settings:** remembers window size, positions, any column and sidebar dimensions and last used paths, also last profile used, are stored in `settings.cfg`
+* **Persistent Settings:** remembers window size, positions, any column and sidebar dimensions and last used paths, also last profile used (all stored in `settings.cfg`)
 * **Smart Sorting:** column sorting with logic for file sizes (KB/MB/GB) and alphabetical order, and clickable column sorting (Name, Smart Size, Date, Type)
 * **Drag and Drop:** full drag and drop functionality inside and outside (example: to and from other file managers)
 * **MISC QOL:** Recycle Bin under Drives in sidebar, Pinned in File Explorer are mirrored in 4TABs, simple status bar
@@ -48,4 +48,4 @@ detection results are **false positives** due to the nature of low-level Windows
 # TODO / MAYBE
 
 * **Full Localizations:** in Italian and English, and maybe some others :|
-* **Custom Commands:** execute external tools (e.g., Terminal, VS Code) directly from the context menu via `settings.cfg` and `context.cfg`
+* **Custom Commands:** execute external tools (example: Terminal, VS Code) directly from the context menu via `settings.cfg` and `context.cfg`

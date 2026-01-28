@@ -11,27 +11,41 @@
 
 * some text are still in my language: Italian
 
-* **Note**: This software is currently an **incomplete prototype**!
+* **Note**:
+This software is currently an **incomplete prototype**!
 
-* **VirusTotal report**: [99d91bed2ac11da21fa708d09a58bac81a8527ca23fc5121f06ae02e81fa8b62](https://www.virustotal.com/gui/file/99d91bed2ac11da21fa708d09a58bac81a8527ca23fc5121f06ae02e81fa8b62)  
+* **VirusTotal report ([99d91bed2ac11da21fa708d09a58bac81a8527ca23fc5121f06ae02e81fa8b62](https://www.virustotal.com/gui/file/99d91bed2ac11da21fa708d09a58bac81a8527ca23fc5121f06ae02e81fa8b62)):**  
 detection results are **false positives** due to the nature of low-level Windows API hooks for the dark theme and shell integration
 
-⚖️ **Disclaimer:** this software is provided "as is", without warranty of any kind. the Author takes no responsibility for data loss or system instability
+⚖️ **Disclaimer:**  
+this software is provided "as is", without warranty of any kind. the Author takes no responsibility for data loss or system instability
 
 # 💻 Features
 
-* **Quad-Pane Layout:** four independent explorer units within a single window (high performance and almost total control)
-* **Navigation & File Management:** buttons next to the path bar
-* **Profile Management:** save and load custom path configurations for all tabs (profiles are saved via `profiles.cfg`)
-* **Immersive Dark Mode:** full integration with Windows **dark theme (only)**, including custom-drawn scrollbars and headers
-* **Sync-Resizing:** dynamic synchronization of sidebar and column widths across all panes
-* **Shell Integration:** high-quality system icons and native *context menus (WIP)*
-* **Persistent Settings:** remembers window size, positions, any column and sidebar dimensions and last used paths, also last profile used (all stored in `settings.cfg`)
-* **Smart Sorting:** column sorting with logic for file sizes (KB/MB/GB) and alphabetical order, and clickable column sorting (Name, Smart Size, Date, Type)
-* **Drag and Drop:** full drag and drop functionality inside and outside (example: to and from other file managers)
-* **MISC QOL:** Recycle Bin under Drives in sidebar, Pinned in File Explorer are mirrored in 4TABs, simple status bar
-* **Smart CopyPasta:** automatic conflict handling with Windows-style renaming (example: File[1].txt) and recursive folder copy support
-* **Properties Dialog:** integration with the native *Windows Properties panel (light theme right now due the confusion of Microsoft development -_-)*
+* **Quad-Pane Layout:**  
+four independent explorer units within a single window (high performance and almost total control)
+* **Navigation & File Management:**  
+buttons next to the path bar
+* **Profile Management:**  
+save and load custom path configurations for all tabs (profiles are saved via `profiles.cfg`)
+* **Immersive Dark Mode:**  
+full integration with Windows **dark theme (only)**, including custom-drawn scrollbars and headers
+* **Sync-Resizing:**  
+dynamic synchronization of sidebar and column widths across all panes
+* **Shell Integration:**  
+high-quality system icons and native *context menus (WIP)*
+* **Persistent Settings:**  
+remembers window size, positions, any column and sidebar dimensions and last used paths, also last profile used (all stored in `settings.cfg`)
+* **Smart Sorting:**  
+column sorting with logic for file sizes (KB/MB/GB) and alphabetical order, and clickable column sorting (Name, Smart Size, Date, Type)
+* **Drag and Drop:**  
+full drag and drop functionality inside and outside (example: to and from other file managers)
+* **MISC QOL:**  
+Recycle Bin under Drives in sidebar, Pinned in File Explorer are mirrored in 4TABs, simple status bar
+* **Smart CopyPasta:**  
+automatic conflict handling with Windows-style renaming (example: File[1].txt) and recursive folder copy support
+* **Properties Dialog:**  
+integration with the native *Windows Properties panel (light theme right now due the confusion of Microsoft development -_-)*
 
 # ⌨️ Keyboard Shortcuts
 
@@ -47,5 +61,7 @@ detection results are **false positives** due to the nature of low-level Windows
 
 # TODO / MAYBE
 
-* **Full Localizations:** in Italian and English, and maybe some others :|
-* **Custom Commands:** execute external tools (example: Terminal, VS Code) directly from the context menu via `settings.cfg` and `context.cfg`
+* **Full Localizations:**  
+in Italian and English, and maybe some others :|
+* **Custom Commands:**  
+execute external tools (example: Terminal, VS Code) directly from the context menu via `settings.cfg` and `context.cfg`

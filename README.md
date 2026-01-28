@@ -13,8 +13,8 @@
 
 * **Note**: This software is currently an **incomplete prototype**!
 
-* **VirusTotal report**: [99d91bed2ac11da21fa708d09a58bac81a8527ca23fc5121f06ae02e81fa8b62](https://www.virustotal.com/gui/file/99d91bed2ac11da21fa708d09a58bac81a8527ca23fc5121f06ae02e81fa8b62)
-* detection results are **false positives** due to the nature of low-level Windows API hooks for the dark theme and shell integration
+* **VirusTotal report**: [99d91bed2ac11da21fa708d09a58bac81a8527ca23fc5121f06ae02e81fa8b62](https://www.virustotal.com/gui/file/99d91bed2ac11da21fa708d09a58bac81a8527ca23fc5121f06ae02e81fa8b62)  
+detection results are **false positives** due to the nature of low-level Windows API hooks for the dark theme and shell integration
 
 ⚖️ **Disclaimer:** this software is provided "as is", without warranty of any kind. the Author takes no responsibility for data loss or system instability
 

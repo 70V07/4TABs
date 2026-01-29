@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to improve the repo
 title: "\U0001FAB2 "
-labels: bug, feedback
+labels: bug
 assignees: 70V07
 
 ---

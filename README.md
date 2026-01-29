@@ -7,7 +7,7 @@
 & "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe" /target:winexe /win32icon:"<path_of_icon>\4TABs.ico" /reference:System.Windows.Forms.dll /reference:System.Drawing.dll /out:"<path_of_exe>\4TABs.exe" "<path_of_source>\*.cs"
 ```
 
-# ⚠️ Warnings
+## ⚠️ Warnings
 
 * some text are still in my language: Italian
 
@@ -20,7 +20,7 @@ detection results are **false positives** due to the nature of low-level Windows
 ⚖️ **Disclaimer:**  
 this software is provided "as is", without warranty of any kind. the Author takes no responsibility for data loss or system instability
 
-# 💻 Features
+## 💻 Features
 
 * **Quad-Pane Layout:**  
 four independent explorer units within a single window (high performance and almost total control)
@@ -47,7 +47,7 @@ automatic conflict handling with Windows-style renaming (example: File[1].txt) a
 * **Properties Dialog:**  
 integration with the native *Windows Properties panel (light theme right now due the confusion of Microsoft development -_-)*
 
-# ⌨️ Keyboard Shortcuts
+## ⌨️ Keyboard Shortcuts
 
 | Combo | Action |
 | :--- | :--- |
@@ -59,7 +59,7 @@ integration with the native *Windows Properties panel (light theme right now due
 | `[Mouse XButton 1]` | History Back |
 | `[Mouse XButton 2]` | History Forward |
 
-# TODO / MAYBE (probability %)
+## TODO / MAYBE (probability %)
 
 * **Full Localizations (99):**  
 in Italian and English, and maybe some others :|

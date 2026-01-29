@@ -24,8 +24,8 @@ this software is provided "as is", without warranty of any kind. the Author take
 
 * **Quad-Pane Layout:**  
 four independent explorer units within a single window (high performance and almost total control)
-* **Navigation & File Management:**  
-buttons next to the path bar
+* **Navigation & File Management shortcuts:**  
+buttons next to the path bar and few Keyboard shortcuts, also a simple *context menus (WIP)*
 * **Profile Management:**  
 save and load custom path configurations for all tabs (profiles are saved via `profiles.cfg`)
 * **Immersive Dark Mode:**  

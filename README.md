@@ -62,13 +62,9 @@ integration with the native *Windows Properties panel (light theme right now due
 
 ## TODO / MAYBE (probability %)
 
-* **Full Localizations (99):**  
-in Italian and English, and maybe some others :|
-* **Custom Commands (86):**  
-execute external tools (example: Terminal, VS Code) directly from the context menu via `settings.cfg` and `context.cfg`
+* **Localizations (99):**  
+in Italian, and support for make translation easy in your lang.
 * **Self-made and Community ADDONS (10):**  
 like Tablacus Explorer
-* **Support for Everything (55):**  
-as replacer of the very inefficent and slow Windows Search (indexing)
 * **Custom themes (74):**  
 self-explanatory

@@ -46,6 +46,7 @@ Recycle Bin under Drives in sidebar, Pinned in File Explorer are mirrored in 4TA
 automatic conflict handling with Windows-style renaming (example: File[1].txt) and recursive folder copy support
 * **Properties Dialog:**  
 integration with the native *Windows Properties panel (light theme right now due the confusion of Microsoft development -_-)*
+* **And much more in changelogs (follow Relases for new features)...**
 
 ## ⌨️ Keyboard Shortcuts
 

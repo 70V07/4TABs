@@ -2,7 +2,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("4TABs File Manager")]
-[assembly: AssemblyDescription("4 tabs File Manager for Windows 10/11+")]
+[assembly: AssemblyDescription("4-pane File Manager for Windows 10/11+")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("TOVOTware")]
 [assembly: AssemblyProduct("4TABs")]
@@ -10,5 +10,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: AssemblyVersion("5.2.0.0")]
-[assembly: AssemblyFileVersion("5.2.0.0")]
+[assembly: AssemblyVersion("0.2.0.0")]
+[assembly: AssemblyFileVersion("0.2.0.0")]

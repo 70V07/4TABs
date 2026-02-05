@@ -26,6 +26,7 @@ namespace QuadExplorer
         private ImageList sharedIcons;
         private DarkSplitter splitter;
         private TextBox txtAddress;
+        // Removed txtSearch from here
         private Label lblStatus;
         private Button btnBack, btnFwd, btnUp;
         private ContextMenuStrip ctxMenu;
@@ -93,17 +94,15 @@ namespace QuadExplorer
             topBar.Height = 36;
             topBar.BackColor = clrBg;
 
-            // --- TASTI CON ICONE MDL2 (Windows 10/11 Style) ---
-            // Usiamo il font "Segoe MDL2 Assets" per avere le icone vettoriali native bianche
             Font iconFont = new Font("Segoe MDL2 Assets", 10);
 
-            btnBack = CreateButton("\uE72B"); // Back Arrow
+            btnBack = CreateButton("\uE72B"); 
             btnBack.Font = iconFont;
             
-            btnFwd = CreateButton("\uE72A"); // Fwd Arrow
+            btnFwd = CreateButton("\uE72A");
             btnFwd.Font = iconFont;
             
-            btnUp = CreateButton("\uE74A"); // Up Arrow
+            btnUp = CreateButton("\uE74A");
             btnUp.Font = iconFont;
 
             btnBack.Click += (s, e) => GoBack();
@@ -174,10 +173,10 @@ namespace QuadExplorer
             listView.DragEnter += Lv_DragEnter;
             listView.DragDrop += Lv_DragDrop;
             
-            listView.Columns.Add("Nome", initialColW[0]);
-            listView.Columns.Add("Dimensione", initialColW[1]);
-            listView.Columns.Add("Tipo", initialColW[2]);
-            listView.Columns.Add("Ultima modifica", initialColW[3]);
+            listView.Columns.Add("Name", initialColW[0]);
+            listView.Columns.Add("Size", initialColW[1]);
+            listView.Columns.Add("Type", initialColW[2]);
+            listView.Columns.Add("Date Modified", initialColW[3]);
             
             listView.ColumnWidthChanged += (s, e) => { if (ColumnResized != null) ColumnResized(this, e); };
             listView.DrawColumnHeader += Lv_DrawColumnHeader;
@@ -242,7 +241,7 @@ namespace QuadExplorer
                     if ((d.Attributes & FileAttributes.Hidden) != 0) continue;
                     ListViewItem item = new ListViewItem(d.Name);
                     item.SubItems.Add("");
-                    item.SubItems.Add("Cartella");
+                    item.SubItems.Add("Folder");
                     item.SubItems.Add(d.LastWriteTime.ToString("yyyy/MM/dd HH:mm"));
                     item.Tag = d.FullName;
                     item.ImageIndex = GetIconIndex(d.FullName, true);
@@ -264,12 +263,12 @@ namespace QuadExplorer
                 listView.Items.AddRange(items.ToArray());
                 CurrentPath = path;
                 txtAddress.Text = path;
-                lblStatus.Text = string.Format(" {0} elementi", items.Count);
+                lblStatus.Text = string.Format(" {0} items", items.Count);
                 
                 // Rialloca il sorter
                 listView.Sort();
             }
-            catch (Exception ex) { lblStatus.Text = "Errore: " + ex.Message; }
+            catch (Exception ex) { lblStatus.Text = "Error: " + ex.Message; }
             finally { listView.EndUpdate(); }
         }
 

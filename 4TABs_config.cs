@@ -13,23 +13,39 @@ namespace QuadExplorer
         private string settingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.cfg");
         private string profilesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "profiles.cfg");
         
-        // --- MODIFICA DEFAULT: Imposta Desktop come base ---
+        // Default Path
         private static string defPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         
+        // Tab Settings
         private string[] savedPaths = new string[] { defPath, defPath, defPath, defPath };
         private int savedSidebarWidth = 250;
         private int[] savedColWidths = new int[] { 250, 80, 120, 140 };
         private string[] savedSorts = new string[] { "0:Ascending", "0:Ascending", "0:Ascending", "0:Ascending" };
 
+        // Global Settings
+        public static bool EnableEverything = true;
+        public static string EverythingPath = "";
+        public static bool EnableToolTips = true; // NEW
+
+        // Context Menu Settings (Default Toolbar)
+        public static bool CtxEnableToolbar = true;
+        public static bool CtxShowCut = true;
+        public static bool CtxShowCopy = true;
+        public static bool CtxShowPaste = true;
+        public static bool CtxShowNew = true;
+
+        // Window Geometry Persistence (X,Y,W,H)
+        public static Rectangle MainWinRect = new Rectangle(0, 0, 1400, 950);
+        public static Rectangle SettingsWinRect = new Rectangle(0, 0, 850, 600);
+        public static bool IsMainWinMaximized = false;
+
         private Dictionary<string, string[]> profiles = new Dictionary<string, string[]>();
         private string currentProfileName = "Default";
 
-        // --- GESTIONE PROFILI ---
+        // --- PROFILE MANAGEMENT ---
         private void LoadProfiles()
         {
             profiles.Clear();
-            
-            // Se il profilo Default non esiste (primo avvio), crealo con 4 tab su Desktop
             if (!profiles.ContainsKey("Default")) 
                 profiles.Add("Default", new string[] { defPath, defPath, defPath, defPath });
 
@@ -63,7 +79,6 @@ namespace QuadExplorer
                 {
                     foreach (var kvp in profiles)
                     {
-                        // Salva: Nome|Path1|Path2|Path3|Path4
                         sw.WriteLine(string.Format("{0}|{1}|{2}|{3}|{4}", 
                             kvp.Key, kvp.Value[0], kvp.Value[1], kvp.Value[2], kvp.Value[3]));
                     }
@@ -74,7 +89,7 @@ namespace QuadExplorer
 
         private void CreateNewProfile()
         {
-            using (DarkInputBox input = new DarkInputBox("Nuovo Profilo", "Nome del profilo:"))
+            using (DarkInputBox input = new DarkInputBox("New Profile", "Profile Name:"))
             {
                 if (input.ShowDialog() == DialogResult.OK)
                 {
@@ -82,7 +97,7 @@ namespace QuadExplorer
                     if (string.IsNullOrEmpty(name)) return;
                     if (profiles.ContainsKey(name))
                     {
-                        MessageBox.Show("Profilo già esistente!");
+                        MessageBox.Show("Profile already exists!");
                         return;
                     }
 
@@ -91,7 +106,6 @@ namespace QuadExplorer
 
                     profiles.Add(name, currentPathsSnapshot);
                     SaveProfilesToFile();
-                    
                     currentProfileName = name;
                     RefreshProfileCombo();
                 }
@@ -102,7 +116,7 @@ namespace QuadExplorer
         {
             if (currentProfileName == "Default" || string.IsNullOrEmpty(currentProfileName)) return;
 
-            if (MessageBox.Show("Eliminare il profilo '" + currentProfileName + "'?", "Conferma", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Delete profile '" + currentProfileName + "'?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 profiles.Remove(currentProfileName);
                 SaveProfilesToFile();
@@ -136,11 +150,22 @@ namespace QuadExplorer
             cmbProfiles.SelectedItem = currentProfileName;
         }
 
-        // --- GESTIONE SETTINGS (Generali) ---
+        // --- SETTINGS MANAGEMENT ---
         private void SaveSettings()
         {
             try
             {
+                if (this.WindowState == FormWindowState.Normal)
+                {
+                    MainWinRect = this.Bounds;
+                    IsMainWinMaximized = false;
+                }
+                else if (this.WindowState == FormWindowState.Maximized)
+                {
+                    MainWinRect = this.RestoreBounds;
+                    IsMainWinMaximized = true;
+                }
+
                 using (StreamWriter sw = new StreamWriter(settingsPath))
                 {
                     for (int i = 0; i < 4; i++) sw.WriteLine(units[i].CurrentPath);
@@ -154,6 +179,19 @@ namespace QuadExplorer
                         sw.WriteLine(string.Format("{0}:{1}", s.Item1, s.Item2));
                     }
                     sw.WriteLine(currentProfileName);
+                    
+                    // Global Settings
+                    sw.WriteLine(EnableEverything.ToString());
+                    sw.WriteLine(EverythingPath);
+                    sw.WriteLine(EnableToolTips.ToString()); // NEW
+
+                    // Window Geometries
+                    sw.WriteLine(string.Format("{0},{1},{2},{3}", MainWinRect.X, MainWinRect.Y, MainWinRect.Width, MainWinRect.Height));
+                    sw.WriteLine(IsMainWinMaximized.ToString());
+                    sw.WriteLine(string.Format("{0},{1},{2},{3}", SettingsWinRect.X, SettingsWinRect.Y, SettingsWinRect.Width, SettingsWinRect.Height));
+
+                    // Context Menu
+                    sw.WriteLine(string.Format("{0}|{1}|{2}|{3}|{4}", CtxEnableToolbar, CtxShowCut, CtxShowCopy, CtxShowPaste, CtxShowNew));
                 }
             }
             catch { }
@@ -182,63 +220,46 @@ namespace QuadExplorer
                 
                 if (idx < lines.Length) currentProfileName = lines[idx++];
                 if (string.IsNullOrEmpty(currentProfileName)) currentProfileName = "Default";
+
+                if (idx < lines.Length) bool.TryParse(lines[idx++], out EnableEverything);
+                if (idx < lines.Length) EverythingPath = lines[idx++];
+                if (idx < lines.Length) bool.TryParse(lines[idx++], out EnableToolTips); // NEW
+
+                // Load Geometries
+                if (idx < lines.Length) MainWinRect = ParseRect(lines[idx++]);
+                if (idx < lines.Length) bool.TryParse(lines[idx++], out IsMainWinMaximized);
+                if (idx < lines.Length) SettingsWinRect = ParseRect(lines[idx++]);
+
+                // Context Menu
+                if (idx < lines.Length)
+                {
+                    string[] ctxParts = lines[idx++].Split('|');
+                    if (ctxParts.Length == 5)
+                    {
+                        bool.TryParse(ctxParts[0], out CtxEnableToolbar);
+                        bool.TryParse(ctxParts[1], out CtxShowCut);
+                        bool.TryParse(ctxParts[2], out CtxShowCopy);
+                        bool.TryParse(ctxParts[3], out CtxShowPaste);
+                        bool.TryParse(ctxParts[4], out CtxShowNew);
+                    }
+                }
             }
             catch { }
         }
-    }
 
-    public partial class ExplorerUnit
-    {
-        private string contextConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "context.cfg");
-
-        private void LoadCustomContext()
+        private Rectangle ParseRect(string line)
         {
-            if (!File.Exists(contextConfigPath)) return;
-            try
+            string[] p = line.Split(',');
+            if (p.Length == 4)
             {
-                string[] lines = File.ReadAllLines(contextConfigPath);
-                ctxMenu.Items.Add(new ToolStripSeparator()); 
-                ToolStripMenuItem currentParent = null; 
-                foreach (string line in lines)
+                int x, y, w, h;
+                if (int.TryParse(p[0], out x) && int.TryParse(p[1], out y) && 
+                    int.TryParse(p[2], out w) && int.TryParse(p[3], out h))
                 {
-                    string l = line.Trim();
-                    if (string.IsNullOrEmpty(l) || l.StartsWith(";")) continue;
-                    if (l.StartsWith("[") && l.EndsWith("]")) {
-                        string groupName = l.Substring(1, l.Length - 2);
-                        if (groupName.ToLower() == "default" || groupName.ToLower() == "menu") currentParent = null; 
-                        else { currentParent = new ToolStripMenuItem(groupName); currentParent.ForeColor = Color.White; ctxMenu.Items.Add(currentParent); }
-                        continue;
-                    }
-                    int eqIndex = l.IndexOf('=');
-                    if (eqIndex > 0) {
-                        string label = l.Substring(0, eqIndex).Trim();
-                        string cmdFull = l.Substring(eqIndex + 1).Trim();
-                        ToolStripMenuItem item = new ToolStripMenuItem(label);
-                        item.ForeColor = Color.Yellow; 
-                        item.Click += (s, e) => RunCustomCommand(cmdFull);
-                        if (currentParent != null) currentParent.DropDownItems.Add(item); else ctxMenu.Items.Add(item);
-                    }
+                    return new Rectangle(x, y, w, h);
                 }
-            } catch { }
-        }
-
-        private void RunCustomCommand(string cmdLine)
-        {
-            string selPath = "";
-            if (listView.SelectedItems.Count > 0) selPath = listView.SelectedItems[0].Tag.ToString();
-            string currentDir = CurrentPath;
-            if (currentDir.EndsWith("\\") && currentDir.Length > 3) currentDir = currentDir.Substring(0, currentDir.Length - 1);
-            string finalCmd = cmdLine.Replace("{path}", selPath).Replace("{dir}", currentDir);
-            string exe = ""; string args = "";
-            if (finalCmd.StartsWith("\"")) {
-                int endQuote = finalCmd.IndexOf("\"", 1);
-                if (endQuote > 0) { exe = finalCmd.Substring(1, endQuote - 1); if (endQuote + 1 < finalCmd.Length) args = finalCmd.Substring(endQuote + 1).Trim(); }
-            } else {
-                int firstSpace = finalCmd.IndexOf(' ');
-                if (firstSpace > 0) { exe = finalCmd.Substring(0, firstSpace); args = finalCmd.Substring(firstSpace + 1); } else { exe = finalCmd; }
             }
-            try { Process.Start(new ProcessStartInfo { FileName = exe, Arguments = args, WorkingDirectory = currentDir }); }
-            catch (Exception ex) { MessageBox.Show("Errore:\n" + ex.Message); }
+            return new Rectangle(0, 0, 0, 0); // Invalid
         }
     }
 }

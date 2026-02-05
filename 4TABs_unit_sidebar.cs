@@ -16,34 +16,25 @@ namespace QuadExplorer
             sideTree.Nodes.Clear();
             sideTree.BeginUpdate(); 
 
-            // Definiamo i percorsi delle DLL una volta sola all'inizio
+            // Define DLL paths
             string sysDir = Environment.SystemDirectory;
             string imageres = Path.Combine(sysDir, "imageres.dll");
             string shell32 = Path.Combine(sysDir, "shell32.dll");
 
-            // 1. ACCESSO RAPIDO (Icona Stella)
-            TreeNode rootFav = new TreeNode("Accesso Rapido");
-            
-            // Usa l'icona Stella dei Preferiti da shell32.dll (Indice 43)
-            int iconStar = GetManualIcon(shell32, 43);
-            
-            // Fallback
+            // 1. QUICK ACCESS
+            TreeNode rootFav = new TreeNode("Quick Access");
+            int iconStar = GetManualIcon(shell32, 43); // Star Icon
             if (iconStar == -1) iconStar = GetIconIndex("shell:::{679f85cb-0220-4080-b29b-5540cc05aab6}", false);
-            
             rootFav.ImageIndex = rootFav.SelectedImageIndex = iconStar;
             
             LoadQuickAccessViaShell(rootFav);
             rootFav.Expand(); 
             sideTree.Nodes.Add(rootFav);
 
-            // 2. QUESTO PC (Icona Computer)
-            TreeNode rootPC = new TreeNode("Questo PC");
-            
-            // Index 15 in shell32.dll è il Computer (Monitor)
-            int iconPC = GetManualIcon(shell32, 15); 
-            
-            if (iconPC == -1) iconPC = 0; // Fallback
-            
+            // 2. THIS PC
+            TreeNode rootPC = new TreeNode("This PC");
+            int iconPC = GetManualIcon(shell32, 15); // Computer Icon
+            if (iconPC == -1) iconPC = 0;
             rootPC.ImageIndex = rootPC.SelectedImageIndex = iconPC;
 
             foreach (var d in DriveInfo.GetDrives())
@@ -52,12 +43,7 @@ namespace QuadExplorer
                 {
                     TreeNode node = new TreeNode(d.Name + " " + d.VolumeLabel);
                     node.Tag = d.Name;
-                    
-                    // MODIFICA: Invece di usare l'icona generica o manuale, 
-                    // chiediamo a Windows l'icona specifica per QUESTO drive (C:\, D:\, E:\)
-                    // False = non è una cartella standard, ma un drive root
                     node.ImageIndex = node.SelectedImageIndex = GetIconIndex(d.Name, false);
-                    
                     node.Nodes.Add("Dummy");
                     rootPC.Nodes.Add(node);
                 }
@@ -65,8 +51,8 @@ namespace QuadExplorer
             rootPC.Expand();
             sideTree.Nodes.Add(rootPC);
 
-            // 3. CESTINO (Icona Custom)
-            TreeNode trash = new TreeNode("Cestino");
+            // 3. RECYCLE BIN
+            TreeNode trash = new TreeNode("Recycle Bin");
             trash.Tag = "::{645FF040-5081-101B-9F08-00AA002F954E}";
             int trashIconIdx = GetRecycleBinIcon();
             if (trashIconIdx == -1) trashIconIdx = GetIconIndex("::{645FF040-5081-101B-9F08-00AA002F954E}", false);
@@ -76,7 +62,6 @@ namespace QuadExplorer
             sideTree.EndUpdate();
         }
 
-        // Helper per caricare icona specifica da DLL e aggiungerla alla lista
         private int GetManualIcon(string dll, int index)
         {
             Icon ico = NativeMethods.GetIconFromDll(dll, index);

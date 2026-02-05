@@ -1,22 +1,25 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Drawing; // Aggiunto per Icon
+using System.Drawing; 
 
 namespace QuadExplorer
 {
     static class NativeMethods
     {
-        
+        // --- Windows Visual Styles & Theming APIs ---
         [DllImport("uxtheme.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
         public static extern int SetWindowTheme(IntPtr hWnd, String pszSubAppName, String pszSubIdList);
 
+        // Undocumented API to force dark mode for the process
         [DllImport("uxtheme.dll", EntryPoint = "#135")]
         public static extern int SetPreferredAppMode(int appMode); 
 
+        // Desktop Window Manager API for window attributes
         [DllImport("dwmapi.dll")]
         public static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
 
+        // --- Shell & File System APIs ---
         [DllImport("shell32.dll")]
         public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbFileInfo, uint uFlags);
 
@@ -29,7 +32,7 @@ namespace QuadExplorer
         [DllImport("shell32.dll", CharSet = CharSet.Auto)]
         public static extern int ExtractIconEx(string stExeFileName, int nIconIndex, out IntPtr phiconLarge, out IntPtr phiconSmall, int nIcons);
 
-        // --- HELPER PER ESTRARRE ICONE DLL ---
+        // Helper method to extract a specific icon index from a DLL
         public static Icon GetIconFromDll(string file, int index)
         {
             IntPtr hIconLarge, hIconSmall;
@@ -38,10 +41,10 @@ namespace QuadExplorer
             return null;
         }
 
+        // --- Constants & Structs ---
         public const int LVM_GETHEADER = 0x101F;
         public const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
         
-        // Flags Icone
         public const uint SHGFI_ICON = 0x100;
         public const uint SHGFI_SMALLICON = 0x1;
         public const uint SHGFI_USEFILEATTRIBUTES = 0x10;
@@ -58,6 +61,7 @@ namespace QuadExplorer
             public string szTypeName;
         };
 
+        // Attempts to force dark scrollbars on standard controls using DWM and UxTheme
         public static void EnableDarkScrollbars(IntPtr handle)
         {
             int darkMode = 1;
@@ -65,6 +69,7 @@ namespace QuadExplorer
             try { SetWindowTheme(handle, "DarkMode_Explorer", null); } catch { }
         }
 
+        // --- Shell Execution (Properties Dialog) ---
         [DllImport("shell32.dll", CharSet = CharSet.Auto)]
         public static extern bool ShellExecuteEx(ref SHELLEXECUTEINFO lpExecInfo);
 
@@ -92,7 +97,7 @@ namespace QuadExplorer
         public const int SW_SHOW = 5;
     }
 
-    // --- INTERFACCE COM ---
+    // --- COM Interfaces for Shell Link Resolution (.lnk) ---
     [ComImport, Guid("00021401-0000-0000-C000-000000000046")] internal class ShellLink { }
 
     [ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown), Guid("000214F9-0000-0000-C000-000000000046")]

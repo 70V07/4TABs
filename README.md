@@ -59,10 +59,10 @@ integration with the native *Windows Properties panel (light theme right now due
 | `[Mouse XButton 1]` | History Back |
 | `[Mouse XButton 2]` | History Forward |
 
-## Confing Files
+## ⚙️ Confing Files
 refer to related Wiki page: (https://github.com/70V07/4TABs/wiki/.CFG-Files)[https://github.com/70V07/4TABs/wiki/.CFG-Files]
 
-## TODO / MAYBE (probability %)
+## ⚒️ TODO / MAYBE (probability %)
 
 * **Localizations (99):**  
 in Italian, and maybe a system for create translation in your other language :|

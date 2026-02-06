@@ -60,6 +60,9 @@ integration with the native *Windows Properties panel (light theme right now due
 | `[Mouse XButton 1]` | History Back |
 | `[Mouse XButton 2]` | History Forward |
 
+## .CFG Files (manually editable)
+Refer to the [Wiki](https://github.com/70V07/4TABs/wiki/.CFG-files)
+
 ## TODO / MAYBE (probability %)
 
 * **Localizations (99):**  

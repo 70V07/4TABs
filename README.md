@@ -60,7 +60,7 @@ integration with the native *Windows Properties panel (light theme right now due
 | `[Mouse XButton 2]` | History Forward |
 
 ## ⚙️ Confing Files
-refer to related Wiki page: (https://github.com/70V07/4TABs/wiki/.CFG-Files)[https://github.com/70V07/4TABs/wiki/.CFG-Files]
+refer to related Wiki page: [https://github.com/70V07/4TABs/wiki/.CFG-Files](https://github.com/70V07/4TABs/wiki/.CFG-Files)
 
 ## ⚒️ TODO / MAYBE (probability %)
 

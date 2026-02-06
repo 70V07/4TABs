@@ -93,7 +93,12 @@ namespace QuadExplorer
             if (Form1.CtxShowCut) pnl.Controls.Add(CreateMenuIconButton("\uE8C6", "Cut", (s,e) => { ctxMenu.Close(); CutCopy(true); }, iconFont));
             if (Form1.CtxShowCopy) pnl.Controls.Add(CreateMenuIconButton("\uE8C8", "Copy", (s,e) => { ctxMenu.Close(); CutCopy(false); }, iconFont));
             if (Form1.CtxShowPaste) pnl.Controls.Add(CreateMenuIconButton("\uE77F", "Paste", (s,e) => { ctxMenu.Close(); Paste(); }, iconFont));
-            if (Form1.CtxShowNew) pnl.Controls.Add(CreateMenuIconButton("\uE710", "New", (s,e) => { ctxMenu.Close(); CreateNewFile(); }, iconFont));
+            
+            // New File Icon changed to \uE7C3 (File/Page)
+            if (Form1.CtxShowNew) pnl.Controls.Add(CreateMenuIconButton("\uE7C3", "New File", (s,e) => { ctxMenu.Close(); CreateNewFile(); }, iconFont));
+            
+            // New Folder Button added - Icon \uE8B7 (Folder)
+            if (Form1.CtxShowNewFolder) pnl.Controls.Add(CreateMenuIconButton("\uE8B7", "New Folder", (s,e) => { ctxMenu.Close(); CreateNewFolder(); }, iconFont));
 
             if (pnl.Controls.Count == 0) return null;
 
@@ -137,7 +142,6 @@ namespace QuadExplorer
                     string l = line.Trim();
                     if (string.IsNullOrEmpty(l) || l.StartsWith(";")) continue;
                     
-                    // Format: Label|IconPath=Command
                     int eqIndex = l.IndexOf('=');
                     if (eqIndex > 0)
                     {
@@ -157,7 +161,6 @@ namespace QuadExplorer
                         ToolStripMenuItem item = new ToolStripMenuItem(label);
                         item.ForeColor = Color.White;
                         
-                        // Icon Handling
                         if (!string.IsNullOrEmpty(iconPath))
                         {
                             if (iconPath.StartsWith(" MDL2:"))
@@ -265,6 +268,27 @@ namespace QuadExplorer
             }
         }
 
+        private void CreateNewFolder()
+        {
+            using (DarkInputBox dlg = new DarkInputBox("New Folder", "Folder Name:"))
+            {
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    string name = dlg.InputValue.Trim();
+                    if (!string.IsNullOrEmpty(name))
+                    {
+                        string full = Path.Combine(CurrentPath, name);
+                        try
+                        {
+                            Directory.CreateDirectory(full);
+                            LoadDir(CurrentPath);
+                        }
+                        catch (Exception ex) { MessageBox.Show("Error creating folder: " + ex.Message); }
+                    }
+                }
+            }
+        }
+
         private string[] CastStringCollection(StringCollection col)
         {
             string[] arr = new string[col.Count];
@@ -307,21 +331,30 @@ namespace QuadExplorer
         private void DeleteSelected()
         {
             if (listView.SelectedItems.Count == 0) return;
-            if (MessageBox.Show("Delete selected files?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            
+            // Check Setting
+            if (Form1.EnableDeleteConfirm)
             {
-                foreach(ListViewItem item in listView.SelectedItems)
-                {
-                    string p = item.Tag.ToString();
-                    try { if(File.Exists(p)) File.Delete(p); else if(Directory.Exists(p)) Directory.Delete(p, true); } catch {}
-                }
-                LoadDir(CurrentPath);
+                if (MessageBox.Show("Delete selected files?", "Confirm", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                    return;
             }
+
+            foreach(ListViewItem item in listView.SelectedItems)
+            {
+                string p = item.Tag.ToString();
+                try { if(File.Exists(p)) File.Delete(p); else if(Directory.Exists(p)) Directory.Delete(p, true); } catch {}
+            }
+            LoadDir(CurrentPath);
         }
 
 		private void ShowProps()
         {
-            if (listView.SelectedItems.Count == 0) return;
-            string path = listView.SelectedItems[0].Tag.ToString();
+            // ℹ️ Fallback su CurrentPath se non ci sono file selezionati
+            string path = (listView.SelectedItems.Count > 0) 
+                ? listView.SelectedItems[0].Tag.ToString() 
+                : CurrentPath;
+
+            if (string.IsNullOrEmpty(path)) return;
 
             try
             {

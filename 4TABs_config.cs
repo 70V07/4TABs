@@ -25,7 +25,8 @@ namespace QuadExplorer
         // Global Settings
         public static bool EnableEverything = true;
         public static string EverythingPath = "";
-        public static bool EnableToolTips = true; // NEW
+        public static bool EnableToolTips = true;
+        public static bool EnableDeleteConfirm = true; // NEW
 
         // Context Menu Settings (Default Toolbar)
         public static bool CtxEnableToolbar = true;
@@ -33,6 +34,7 @@ namespace QuadExplorer
         public static bool CtxShowCopy = true;
         public static bool CtxShowPaste = true;
         public static bool CtxShowNew = true;
+        public static bool CtxShowNewFolder = true; // NEW
 
         // Window Geometry Persistence (X,Y,W,H)
         public static Rectangle MainWinRect = new Rectangle(0, 0, 1400, 950);
@@ -183,15 +185,16 @@ namespace QuadExplorer
                     // Global Settings
                     sw.WriteLine(EnableEverything.ToString());
                     sw.WriteLine(EverythingPath);
-                    sw.WriteLine(EnableToolTips.ToString()); // NEW
+                    sw.WriteLine(EnableToolTips.ToString());
+                    sw.WriteLine(EnableDeleteConfirm.ToString()); // NEW
 
                     // Window Geometries
                     sw.WriteLine(string.Format("{0},{1},{2},{3}", MainWinRect.X, MainWinRect.Y, MainWinRect.Width, MainWinRect.Height));
                     sw.WriteLine(IsMainWinMaximized.ToString());
                     sw.WriteLine(string.Format("{0},{1},{2},{3}", SettingsWinRect.X, SettingsWinRect.Y, SettingsWinRect.Width, SettingsWinRect.Height));
 
-                    // Context Menu
-                    sw.WriteLine(string.Format("{0}|{1}|{2}|{3}|{4}", CtxEnableToolbar, CtxShowCut, CtxShowCopy, CtxShowPaste, CtxShowNew));
+                    // Context Menu (Added 5th element)
+                    sw.WriteLine(string.Format("{0}|{1}|{2}|{3}|{4}|{5}", CtxEnableToolbar, CtxShowCut, CtxShowCopy, CtxShowPaste, CtxShowNew, CtxShowNewFolder));
                 }
             }
             catch { }
@@ -223,7 +226,8 @@ namespace QuadExplorer
 
                 if (idx < lines.Length) bool.TryParse(lines[idx++], out EnableEverything);
                 if (idx < lines.Length) EverythingPath = lines[idx++];
-                if (idx < lines.Length) bool.TryParse(lines[idx++], out EnableToolTips); // NEW
+                if (idx < lines.Length) bool.TryParse(lines[idx++], out EnableToolTips);
+                if (idx < lines.Length) bool.TryParse(lines[idx++], out EnableDeleteConfirm); // NEW
 
                 // Load Geometries
                 if (idx < lines.Length) MainWinRect = ParseRect(lines[idx++]);
@@ -234,13 +238,14 @@ namespace QuadExplorer
                 if (idx < lines.Length)
                 {
                     string[] ctxParts = lines[idx++].Split('|');
-                    if (ctxParts.Length == 5)
+                    if (ctxParts.Length >= 5)
                     {
                         bool.TryParse(ctxParts[0], out CtxEnableToolbar);
                         bool.TryParse(ctxParts[1], out CtxShowCut);
                         bool.TryParse(ctxParts[2], out CtxShowCopy);
                         bool.TryParse(ctxParts[3], out CtxShowPaste);
                         bool.TryParse(ctxParts[4], out CtxShowNew);
+                        if (ctxParts.Length > 5) bool.TryParse(ctxParts[5], out CtxShowNewFolder); // NEW
                     }
                 }
             }

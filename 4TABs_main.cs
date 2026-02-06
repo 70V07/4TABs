@@ -29,7 +29,7 @@ namespace QuadExplorer
         public Form1()
         {
             try { NativeMethods.SetPreferredAppMode(2); } catch { }
-            this.Text = "Quad Explorer Ultimate (Dark)";
+            this.Text = "4TABs";
             this.StartPosition = FormStartPosition.Manual; // Important for custom bounds!
             
             this.BackColor = ColorTranslator.FromHtml("#202020");

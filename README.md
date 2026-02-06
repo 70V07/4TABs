@@ -59,15 +59,14 @@ integration with the native *Windows Properties panel (light theme right now due
 | `[Mouse XButton 1]` | History Back |
 | `[Mouse XButton 2]` | History Forward |
 
+## Confing Files
+refer to related Wiki page: (https://github.com/70V07/4TABs/wiki/.CFG-Files)[https://github.com/70V07/4TABs/wiki/.CFG-Files]
+
 ## TODO / MAYBE (probability %)
 
-* **Full Localizations (99):**  
-in Italian and English, and maybe some others :|
-* **Custom Commands (86):**  
-execute external tools (example: Terminal, VS Code) directly from the context menu via `settings.cfg` and `context.cfg`
+* **Localizations (99):**  
+in Italian, and maybe a system for create translation in your other language :|
 * **Self-made and Community ADDONS (10):**  
 like Tablacus Explorer
-* **Support for Everything (55):**  
-as replacer of the very inefficent and slow Windows Search (indexing)
 * **Custom themes (74):**  
 self-explanatory

@@ -9,12 +9,10 @@
 
 ## ⚠️ Warnings
 
-* some text are still in my language: Italian
-
 * **Note**:
 This software is currently an **incomplete prototype**!
 
-* **VirusTotal report ([99d91bed2ac11da21fa708d09a58bac81a8527ca23fc5121f06ae02e81fa8b62](https://www.virustotal.com/gui/file/99d91bed2ac11da21fa708d09a58bac81a8527ca23fc5121f06ae02e81fa8b62)):**  
+* **VirusTotal reports:**  
 detection results are **false positives** due to the nature of low-level Windows API hooks for the dark theme and shell integration
 
 ⚖️ **Disclaimer:**  

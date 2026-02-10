@@ -2,18 +2,15 @@
 
 ![4TABs Preview](https://raw.githubusercontent.com/70V07/4TABs/refs/heads/main/screenshoot.jpg)
 
-## ⚠️ Warnings
+## WARNING
 
-**Note**:  
-this software is currently an **incomplete prototype**! (but work, and almost zero-bugs)
-
-**VirusTotal reports:**  
-detection results are **false positives** due to the nature of low-level Windows API hooks for the dark theme and shell integration
+⚠️ this tool is in Proto stage, provided as is it, without any warranty
 
 ⚖️ **Disclaimer:**  
 this software is provided "as is", without warranty of any kind. the Author takes no responsibility for data loss or system instability
 
-⚠️ this tool is in Proto stage, provided as is it, without any warranty
+**VirusTotal reports:**  
+detection results are **false positives** due to the nature of low-level Windows API hooks for the dark theme and shell integration
 
 ---
 
@@ -82,3 +79,9 @@ right now is all in English (maybe some comments inside the source are in italia
 like Tablacus Explorer
 * **Custom themes (74):**  
 self-explanatory
+
+---
+
+## ⚖️ LICENSE
+
+4TABs License ─ This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](https://github.com/70V07/4TABs/blob/main/LICENSE) file for details.

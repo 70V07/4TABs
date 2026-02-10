@@ -14,6 +14,10 @@ detection results are **false positives** due to the nature of low-level Windows
 
 ---
 
+## MANDATORY
+*   Windows 10/11
+*   .NET Framework 4.7.2 or higher
+
 ## COMPILE
 
 **download the Latest Relase or compile from source (or any other C# compiler):**
@@ -23,7 +27,7 @@ detection results are **false positives** due to the nature of low-level Windows
 
 ---
 
-## 💻 Features
+## Features
 
 * **Quad-Pane Layout:**  
 four independent explorer units within a single window (high performance and almost total control)
@@ -52,7 +56,7 @@ integration with the native *Windows Properties panel (light theme right now due
 
 ---
 
-## ⌨️ Keyboard Shortcuts
+## Keyboard Shortcuts
 
 | Combo | Action |
 | :--- | :--- |
@@ -66,7 +70,7 @@ integration with the native *Windows Properties panel (light theme right now due
 
 ---
 
-## ⚙️ Confing Files
+## Confing Files
 refer to related Wiki page: [https://github.com/70V07/4TABs/wiki/.CFG-Files](https://github.com/70V07/4TABs/wiki/.CFG-Files)
 
 ---

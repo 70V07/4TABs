@@ -2,11 +2,6 @@
 
 ![4TABs Preview](https://raw.githubusercontent.com/70V07/4TABs/refs/heads/main/screenshoot.jpg)
 
-**download the Latest Relase or compile from source (or any other C# compiler):**
-```
-& "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe" /target:winexe /win32icon:"<PATH_SOURCE>\4TABs.ico" /reference:System.Windows.Forms.dll /reference:System.Drawing.dll /out:"<PATH_OUTPUT>\4TABs.exe" "<PATH_SOURCE>\*.cs"
-```
-
 ## ⚠️ Warnings
 
 **Note**:  
@@ -19,6 +14,15 @@ detection results are **false positives** due to the nature of low-level Windows
 this software is provided "as is", without warranty of any kind. the Author takes no responsibility for data loss or system instability
 
 ⚠️ this tool is in Proto stage, provided as is it, without any warranty
+
+---
+
+## COMPILE
+
+**download the Latest Relase or compile from source (or any other C# compiler):**
+```
+& "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe" /target:winexe /win32icon:"<PATH_SOURCE>\4TABs.ico" /reference:System.Windows.Forms.dll /reference:System.Drawing.dll /out:"<PATH_OUTPUT>\4TABs.exe" "<PATH_SOURCE>\*.cs"
+```
 
 ---
 

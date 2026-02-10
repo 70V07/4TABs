@@ -1,10 +1,10 @@
-![4TABs Preview](https://raw.githubusercontent.com/70V07/4TABs/refs/heads/main/screenshoot.jpg)
-
 4TABs is a 4 tabs file manager for Windows 10/11+ designed to enhance file manipulation efficiency through a centralized four-unit interface
 
-**download the .exe or compile from source (or any other C# compiler):**
+![4TABs Preview](https://raw.githubusercontent.com/70V07/4TABs/refs/heads/main/screenshoot.jpg)
+
+**download the Latest Relase or compile from source (or any other C# compiler):**
 ```
-& "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe" /target:winexe /win32icon:"<path_of_icon>\4TABs.ico" /reference:System.Windows.Forms.dll /reference:System.Drawing.dll /out:"<path_of_exe>\4TABs.exe" "<path_of_source>\*.cs"
+& "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe" /target:winexe /win32icon:"<PATH_SOURCE>\4TABs.ico" /reference:System.Windows.Forms.dll /reference:System.Drawing.dll /out:"<PATH_OUTPUT>\4TABs.exe" "<PATH_SOURCE>\*.cs"
 ```
 
 ## ⚠️ Warnings
@@ -17,6 +17,10 @@ detection results are **false positives** due to the nature of low-level Windows
 
 ⚖️ **Disclaimer:**  
 this software is provided "as is", without warranty of any kind. the Author takes no responsibility for data loss or system instability
+
+⚠️ this tool is in Proto stage, provided as is it, without any warranty
+
+---
 
 ## 💻 Features
 
@@ -45,6 +49,8 @@ automatic conflict handling with Windows-style renaming (example: File[1].txt) a
 * **Properties Dialog:**  
 integration with the native *Windows Properties panel (light theme right now due the confusion of Microsoft development -_-)*
 
+---
+
 ## ⌨️ Keyboard Shortcuts
 
 | Combo | Action |
@@ -57,8 +63,12 @@ integration with the native *Windows Properties panel (light theme right now due
 | `[Mouse XButton 1]` | History Back |
 | `[Mouse XButton 2]` | History Forward |
 
+---
+
 ## ⚙️ Confing Files
 refer to related Wiki page: [https://github.com/70V07/4TABs/wiki/.CFG-Files](https://github.com/70V07/4TABs/wiki/.CFG-Files)
+
+---
 
 ## ⚒️ TODO / MAYBE (probability %)
 

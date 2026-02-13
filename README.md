@@ -20,7 +20,7 @@ detection results are **false positives** due to the nature of low-level Windows
 Im looking for solutions that will be implemented in the next release  
 if you have ideas open an issue...
 
-+ when cut/paste from one path to another, the original file remains in the initial path, so it actually does copy/paste
++ when cut/paste from one path to another (also when drag'n'drop), the original file remains in the initial path, so it actually does copy/paste
 
 ---
 

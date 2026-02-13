@@ -15,10 +15,12 @@ detection results are **false positives** due to the nature of low-level Windows
 
 ---
 
-# 🪲 KNOWN ISSUES
+# 🪲 KNOWN ISSUES (why Work In Progress OBV)
 
 Im looking for solutions that will be implemented in the next release  
 if you have ideas open an issue...
+
++ files deleted dont go in trash bin, just permanently removed
 
 + when cut/paste from one path to another (also when drag'n'drop), the original file remains in the initial path, so it actually does copy/paste
 

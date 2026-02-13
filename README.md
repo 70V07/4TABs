@@ -24,6 +24,8 @@ if you have ideas open an issue...
 
 + when cut/paste from one path to another (also when drag'n'drop), the original file remains in the initial path, so it actually does copy/paste
 
++ the path section does not refresh after changes (copy/paste)
+
 ---
 
 ## MANDATORY
